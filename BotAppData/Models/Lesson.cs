@@ -4,17 +4,16 @@ using System.Text;
 
 namespace BotAppData.Models
 {
-    public class Broadcast
+    public class Lesson
     {
         public Guid Id { get; set; }
-        public string Message { get; set; }
-        public DateTime MessageAt { get; set; }
-        public Group Group { get; set; }
+        public Guid Group { get; set; }
+        public DateTime LessonAt { get; set; }
+        public bool Status { get; set; }
 
-        public Broadcast()
+        public Lesson()
         {
             Id = new Guid();
         }
-
     }
 }

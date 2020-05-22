@@ -6,9 +6,9 @@ using System.Text;
 
 namespace BotAppData.Models.Configurations
 {
-    class BroadcastGroupConfigurations : IEntityTypeConfiguration<BroadcastGroup>
+    class BroadcastGroupConfigurations : IEntityTypeConfiguration<Group>
     {
-        public void Configure(EntityTypeBuilder<BroadcastGroup> builder)
+        public void Configure(EntityTypeBuilder<Group> builder)
         {
             builder.HasKey(prop => prop.Id);
             builder.Property(prop => prop.Name).IsRequired();

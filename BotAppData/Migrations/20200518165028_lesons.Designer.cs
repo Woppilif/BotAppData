@@ -3,15 +3,17 @@ using System;
 using BotAppData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BotAppData.Migrations
 {
     [DbContext(typeof(BotAppContext))]
-    partial class BotAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200518165028_lesons")]
+    partial class lesons
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -70,16 +72,15 @@ namespace BotAppData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("Group")
+                    b.Property<Guid?>("GroupId")
                         .HasColumnType("uuid");
 
                     b.Property<DateTime>("LessonAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<bool>("Status")
-                        .HasColumnType("boolean");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("GroupId");
 
                     b.ToTable("Lessons");
                 });
@@ -90,16 +91,18 @@ namespace BotAppData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
+                    b.Property<Guid?>("BroadcastGroupId")
+                        .HasColumnType("uuid");
+
                     b.Property<long>("ChatId")
                         .HasColumnType("bigint");
 
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid>("Group")
-                        .HasColumnType("uuid");
-
                     b.HasKey("Id");
+
+                    b.HasIndex("BroadcastGroupId");
 
                     b.ToTable("Users");
                 });
@@ -109,6 +112,20 @@ namespace BotAppData.Migrations
                     b.HasOne("BotAppData.Models.Group", "Group")
                         .WithMany()
                         .HasForeignKey("GroupId");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.Lesson", b =>
+                {
+                    b.HasOne("BotAppData.Models.Group", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.Users", b =>
+                {
+                    b.HasOne("BotAppData.Models.Group", "BroadcastGroup")
+                        .WithMany()
+                        .HasForeignKey("BroadcastGroupId");
                 });
 #pragma warning restore 612, 618
         }

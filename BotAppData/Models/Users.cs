@@ -7,7 +7,7 @@ namespace BotAppData.Models
         public Guid Id { get; private set; }
         public long ChatId { get; set; }
         public DateTime CreatedAt { get; set; }
-        public BroadcastGroup BroadcastGroup { get; set; }
+        public Guid Group { get; set; }
 
         public Users()
         {

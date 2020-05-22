@@ -4,7 +4,7 @@ using System.Text;
 
 namespace BotAppData.Models
 {
-    public class BroadcastGroup
+    public class Group
     {
         public Guid Id { get; set; }
         public string Name { get; set; }
@@ -12,7 +12,7 @@ namespace BotAppData.Models
         public int Type { get; set; }
         public Guid Creator { get; set; }
 
-        public BroadcastGroup()
+        public Group()
         {
             Id = new Guid();
         }
