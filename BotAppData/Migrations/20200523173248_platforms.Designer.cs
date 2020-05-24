@@ -3,15 +3,17 @@ using System;
 using BotAppData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BotAppData.Migrations
 {
     [DbContext(typeof(BotAppContext))]
-    partial class BotAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200523173248_platforms")]
+    partial class platforms
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -90,23 +92,6 @@ namespace BotAppData.Migrations
                     b.ToTable("Lessons");
                 });
 
-            modelBuilder.Entity("BotAppData.Models.LinkSpyer", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<Guid>("LessonId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("LinkSpyers");
-                });
-
             modelBuilder.Entity("BotAppData.Models.Pattern", b =>
                 {
                     b.Property<Guid>("Id")
@@ -138,9 +123,6 @@ namespace BotAppData.Migrations
 
                     b.Property<Guid>("PatternId")
                         .HasColumnType("uuid");
-
-                    b.Property<bool>("Status")
-                        .HasColumnType("boolean");
 
                     b.HasKey("Id");
 

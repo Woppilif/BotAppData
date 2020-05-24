@@ -3,15 +3,17 @@ using System;
 using BotAppData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BotAppData.Migrations
 {
     [DbContext(typeof(BotAppContext))]
-    partial class BotAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200524140201_spy")]
+    partial class spy
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder

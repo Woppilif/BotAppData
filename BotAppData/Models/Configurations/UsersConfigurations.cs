@@ -10,7 +10,8 @@ namespace BotAppData.Models.Configurations
             builder.HasKey(prop => prop.Id);
             builder.Property(prop => prop.ChatId).IsRequired();
             builder.Property(prop => prop.CreatedAt).HasColumnType("TIMESTAMP(0)").IsRequired();
-            builder.Property(prop => prop.BroadcastGroup).IsRequired();
+            builder.Property(prop => prop.Group).IsRequired();
+            builder.Property(prop => prop.Platform).IsRequired();
         }
     }
 }
