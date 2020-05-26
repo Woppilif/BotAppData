@@ -13,6 +13,7 @@ namespace BotAppData.Models.Configurations
             builder.HasKey(prop => prop.Id);
             builder.Property(prop => prop.LessonId).IsRequired();
             builder.Property(prop => prop.CreatedAt).IsRequired();
+            builder.Property(prop => prop.ChatId).IsRequired();
         }
     }
 }

@@ -9,11 +9,12 @@ namespace BotAppData.Models
         public Guid Id { get; set; }
         public Guid LessonId { get; set; }
         public DateTime CreatedAt { get; set; }
-
+        public long ChatId { get; set; }
         public LinkSpyer()
         {
             Id = new Guid();
             CreatedAt = DateTime.Now;
+            ChatId = 0;
         }
     }
 }
