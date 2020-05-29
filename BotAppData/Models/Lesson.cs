@@ -10,7 +10,7 @@ namespace BotAppData.Models
         public bool Status { get; set; }
         public string Url { get; set; }
         public Guid PatternId { get; set; }
-
+        //public bool Repeatable { get; set; }
         public Lesson()
         {
             Id = new Guid();
