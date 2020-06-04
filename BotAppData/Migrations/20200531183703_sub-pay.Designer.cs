@@ -3,15 +3,17 @@ using System;
 using BotAppData;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 
 namespace BotAppData.Migrations
 {
     [DbContext(typeof(BotAppContext))]
-    partial class BotAppContextModelSnapshot : ModelSnapshot
+    [Migration("20200531183703_sub-pay")]
+    partial class subpay
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -56,9 +58,6 @@ namespace BotAppData.Migrations
                     b.Property<string>("Name")
                         .HasColumnType("text");
 
-                    b.Property<int>("StudentsCount")
-                        .HasColumnType("integer");
-
                     b.Property<int>("Type")
                         .HasColumnType("integer");
 
@@ -76,17 +75,11 @@ namespace BotAppData.Migrations
                     b.Property<Guid>("Group")
                         .HasColumnType("uuid");
 
-                    b.Property<bool>("IsRepeats")
-                        .HasColumnType("boolean");
-
                     b.Property<DateTime>("LessonAt")
                         .HasColumnType("timestamp without time zone");
 
                     b.Property<Guid>("PatternId")
                         .HasColumnType("uuid");
-
-                    b.Property<bool>("Repeatable")
-                        .HasColumnType("boolean");
 
                     b.Property<bool>("Status")
                         .HasColumnType("boolean");
@@ -159,67 +152,6 @@ namespace BotAppData.Migrations
                     b.ToTable("PatternMessages");
                 });
 
-            modelBuilder.Entity("BotAppData.Models.Payments", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<decimal>("Amount")
-                        .HasColumnType("numeric");
-
-                    b.Property<DateTime>("CapturedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<long>("ChatId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("CreatedAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("IsExtends")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsPayed")
-                        .HasColumnType("boolean");
-
-                    b.Property<string>("PaymentId")
-                        .HasColumnType("text");
-
-                    b.Property<Guid>("SubscriptionId")
-                        .HasColumnType("uuid");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Payment");
-                });
-
-            modelBuilder.Entity("BotAppData.Models.Subscription", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<DateTime>("Begin")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<long>("ChatId")
-                        .HasColumnType("bigint");
-
-                    b.Property<DateTime>("End")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.Property<bool>("IsActive")
-                        .HasColumnType("boolean");
-
-                    b.Property<int>("Product")
-                        .HasColumnType("integer");
-
-                    b.HasKey("Id");
-
-                    b.ToTable("Subscriptions");
-                });
-
             modelBuilder.Entity("BotAppData.Models.Users", b =>
                 {
                     b.Property<Guid>("Id")
@@ -240,12 +172,6 @@ namespace BotAppData.Migrations
 
                     b.Property<Guid>("Group")
                         .HasColumnType("uuid");
-
-                    b.Property<bool>("IsAdmin")
-                        .HasColumnType("boolean");
-
-                    b.Property<bool>("IsTeacher")
-                        .HasColumnType("boolean");
 
                     b.Property<string>("Lastname")
                         .HasColumnType("text");

@@ -17,6 +17,8 @@ namespace BotAppData.Models.Configurations
             builder.Property(prop => prop.Phone).IsRequired();
             builder.Property(prop => prop.Registered).IsRequired();
             builder.Property(prop => prop.Age).IsRequired();
+            builder.Property(prop => prop.IsAdmin).IsRequired();
+            builder.Property(prop => prop.IsTeacher).IsRequired();
         }
     }
 }

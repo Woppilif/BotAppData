@@ -21,6 +21,8 @@ namespace BotAppData.Models
         public string Phone { get; set; }
         public bool Registered { get; set; }
         public Ages Age { get; set; }
+        public bool IsAdmin { get; set; }
+        public bool IsTeacher { get; set; }
 
         public Users()
         {
