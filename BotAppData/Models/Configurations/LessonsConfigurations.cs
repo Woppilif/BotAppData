@@ -16,6 +16,7 @@ namespace BotAppData.Models.Configurations
             builder.Property(prop => prop.Status).IsRequired();
             builder.Property(prop => prop.PatternId).IsRequired();
             builder.Property(prop => prop.Url).IsRequired();
+            builder.Property(prop => prop.IsRepeats).IsRequired();
         }
     }
 }

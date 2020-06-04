@@ -11,7 +11,7 @@ namespace BotAppData.Models
         public int Age { get; set; }
         public int Type { get; set; }
         public Guid Creator { get; set; }
-
+        public int StudentsCount { get; set; }
         public Group()
         {
             Id = new Guid();

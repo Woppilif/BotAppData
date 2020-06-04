@@ -12,6 +12,7 @@ namespace BotAppData.Models.Configurations
             builder.Property(prop => prop.Age).IsRequired();
             builder.Property(prop => prop.Type).IsRequired();
             builder.Property(prop => prop.Creator).IsRequired();
+            builder.Property(prop => prop.StudentsCount).IsRequired();
         }
     }
 }
