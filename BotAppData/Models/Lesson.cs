@@ -11,7 +11,6 @@ namespace BotAppData.Models
         public string Url { get; set; }
         public Guid PatternId { get; set; }
         public bool IsRepeats { get; set; }
-
         public Lesson()
         {
             Id = new Guid();
