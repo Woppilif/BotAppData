@@ -1,17 +1,11 @@
 ﻿using System;
+using BotAppData.Interfaces;
 
 namespace BotAppData.Models
 {
-    public enum Ages
+    public class Users : IUser
     {
-        Children = 1,
-        Teens = 2,
-        Students = 3,
-        Adults = 4
-    }
-    public class Users
-    {
-        public Guid Id { get; private set; }
+        public Guid Id { get; set; }
         public long ChatId { get; set; }
         public DateTime CreatedAt { get; set; }
         public Guid Group { get; set; }
