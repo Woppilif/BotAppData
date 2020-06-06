@@ -8,11 +8,11 @@ namespace BotAppData.Models.Configurations
         public void Configure(EntityTypeBuilder<Payments> builder)
         {
             builder.HasKey(prop => prop.Id);
-            builder.Property(prop => prop.ChatId).IsRequired();
+            builder.Property(prop => prop.Users).IsRequired();
             builder.Property(prop => prop.CreatedAt).IsRequired();
             builder.Property(prop => prop.CapturedAt).IsRequired();
             builder.Property(prop => prop.IsPayed).IsRequired();
-            builder.Property(prop => prop.SubscriptionId).IsRequired();
+            builder.Property(prop => prop.Subscription).IsRequired();
             builder.Property(prop => prop.Amount).IsRequired();
             builder.Property(prop => prop.PaymentId).IsRequired();
             builder.Property(prop => prop.IsExtends).IsRequired();

@@ -11,9 +11,9 @@ namespace BotAppData.Models.Configurations
         public void Configure(EntityTypeBuilder<LinkSpyer> builder)
         {
             builder.HasKey(prop => prop.Id);
-            builder.Property(prop => prop.LessonId).IsRequired();
+            builder.Property(prop => prop.Lesson).IsRequired();
             builder.Property(prop => prop.CreatedAt).IsRequired();
-            builder.Property(prop => prop.ChatId).IsRequired();
+            builder.Property(prop => prop.Users).IsRequired();
         }
     }
 }

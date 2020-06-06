@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BotAppData.Interfaces;
+using System;
 
 namespace BotAppData.Models
 {
@@ -12,7 +13,7 @@ namespace BotAppData.Models
     public class Subscription
     {
         public Guid Id { get; set; }
-        public long ChatId { get; set; }
+        public Users Users { get; set; }
         public DateTime Begin { get; set; }
         public DateTime End { get; set; }
         public Products Product { get; set; }

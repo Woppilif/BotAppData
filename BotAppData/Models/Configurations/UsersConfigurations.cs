@@ -7,8 +7,8 @@ namespace BotAppData.Models.Configurations
     {
         public void Configure(EntityTypeBuilder<Users> builder)
         {
-            builder.HasKey(prop => prop.Id);
-            builder.Property(prop => prop.ChatId).IsRequired();
+            builder.Property(prop => prop.Id).IsRequired();
+            builder.HasKey(prop => prop.ChatId);
             builder.Property(prop => prop.CreatedAt).HasColumnType("TIMESTAMP(0)").IsRequired();
             builder.Property(prop => prop.Group).IsRequired();
             builder.Property(prop => prop.Platform).IsRequired();

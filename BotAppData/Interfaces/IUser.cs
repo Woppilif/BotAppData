@@ -1,4 +1,5 @@
-﻿using System;
+﻿using BotAppData.Models;
+using System;
 using System.Collections.Generic;
 using System.Text;
 
@@ -16,7 +17,7 @@ namespace BotAppData.Interfaces
         Guid Id { get; set; }
         long ChatId { get; set; }
         DateTime CreatedAt { get; set; }
-        Guid Group { get; set; }
+        Group Group { get; set; }
         int Platform { get; set; }
         string Firstname { get; set; }
         string Lastname { get; set; }

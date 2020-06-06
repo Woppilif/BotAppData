@@ -10,6 +10,7 @@ namespace BotAppData.Models
         public Pattern()
         {
             Id = new Guid();
+            Name = $"Паттерн {DateTime.Now}";
         }
     }
 }

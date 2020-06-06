@@ -8,7 +8,7 @@ namespace BotAppData.Models.Configurations
         public void Configure(EntityTypeBuilder<Subscription> builder)
         {
             builder.HasKey(prop => prop.Id);
-            builder.Property(prop => prop.ChatId).IsRequired();
+            builder.Property(prop => prop.Users).IsRequired();
             builder.Property(prop => prop.Begin).IsRequired();
             builder.Property(prop => prop.Product).IsRequired();
             builder.Property(prop => prop.IsActive).IsRequired();

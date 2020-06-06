@@ -10,8 +10,8 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BotAppData.Migrations
 {
     [DbContext(typeof(BotAppContext))]
-    [Migration("20200602185439_paymentstr")]
-    partial class paymentstr
+    [Migration("20200606200736_initmains")]
+    partial class initmains
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
@@ -20,28 +20,6 @@ namespace BotAppData.Migrations
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            modelBuilder.Entity("BotAppData.Models.Broadcast", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("GroupId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("MessageAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("Broadcast");
-                });
 
             modelBuilder.Entity("BotAppData.Models.Group", b =>
                 {
@@ -75,7 +53,7 @@ namespace BotAppData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<Guid>("Group")
+                    b.Property<Guid?>("GroupId")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("IsRepeats")
@@ -84,7 +62,7 @@ namespace BotAppData.Migrations
                     b.Property<DateTime>("LessonAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid>("PatternId")
+                    b.Property<Guid?>("PatternId")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("Status")
@@ -95,6 +73,10 @@ namespace BotAppData.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GroupId");
+
+                    b.HasIndex("PatternId");
+
                     b.ToTable("Lessons");
                 });
 
@@ -104,16 +86,20 @@ namespace BotAppData.Migrations
                         .ValueGeneratedOnAdd()
                         .HasColumnType("uuid");
 
-                    b.Property<long>("ChatId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<Guid>("LessonId")
+                    b.Property<Guid?>("LessonId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("UsersId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("LessonId");
+
+                    b.HasIndex("UsersId");
 
                     b.ToTable("LinkSpyers");
                 });
@@ -147,13 +133,15 @@ namespace BotAppData.Migrations
                     b.Property<int>("Order")
                         .HasColumnType("integer");
 
-                    b.Property<Guid>("PatternId")
+                    b.Property<Guid?>("PatternId")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("Status")
                         .HasColumnType("boolean");
 
                     b.HasKey("Id");
+
+                    b.HasIndex("PatternId");
 
                     b.ToTable("PatternMessages");
                 });
@@ -170,11 +158,11 @@ namespace BotAppData.Migrations
                     b.Property<DateTime>("CapturedAt")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("ChatId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
+
+                    b.Property<bool>("IsExtends")
+                        .HasColumnType("boolean");
 
                     b.Property<bool>("IsPayed")
                         .HasColumnType("boolean");
@@ -182,12 +170,39 @@ namespace BotAppData.Migrations
                     b.Property<string>("PaymentId")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("SubscriptionId")
+                    b.Property<Guid?>("SubscriptionId")
+                        .HasColumnType("uuid");
+
+                    b.Property<Guid?>("UsersId")
                         .HasColumnType("uuid");
 
                     b.HasKey("Id");
 
+                    b.HasIndex("SubscriptionId");
+
+                    b.HasIndex("UsersId");
+
                     b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.ProductItems", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int[]>("Ages")
+                        .HasColumnType("integer[]");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductItem");
                 });
 
             modelBuilder.Entity("BotAppData.Models.Subscription", b =>
@@ -199,9 +214,6 @@ namespace BotAppData.Migrations
                     b.Property<DateTime>("Begin")
                         .HasColumnType("timestamp without time zone");
 
-                    b.Property<long>("ChatId")
-                        .HasColumnType("bigint");
-
                     b.Property<DateTime>("End")
                         .HasColumnType("timestamp without time zone");
 
@@ -211,7 +223,12 @@ namespace BotAppData.Migrations
                     b.Property<int>("Product")
                         .HasColumnType("integer");
 
+                    b.Property<Guid?>("UsersId")
+                        .HasColumnType("uuid");
+
                     b.HasKey("Id");
+
+                    b.HasIndex("UsersId");
 
                     b.ToTable("Subscriptions");
                 });
@@ -234,7 +251,7 @@ namespace BotAppData.Migrations
                     b.Property<string>("Firstname")
                         .HasColumnType("text");
 
-                    b.Property<Guid>("Group")
+                    b.Property<Guid?>("GroupId")
                         .HasColumnType("uuid");
 
                     b.Property<bool>("IsAdmin")
@@ -257,10 +274,59 @@ namespace BotAppData.Migrations
 
                     b.HasKey("Id");
 
+                    b.HasIndex("GroupId");
+
                     b.ToTable("Users");
                 });
 
-            modelBuilder.Entity("BotAppData.Models.Broadcast", b =>
+            modelBuilder.Entity("BotAppData.Models.Lesson", b =>
+                {
+                    b.HasOne("BotAppData.Models.Group", "Group")
+                        .WithMany()
+                        .HasForeignKey("GroupId");
+
+                    b.HasOne("BotAppData.Models.Pattern", "Pattern")
+                        .WithMany()
+                        .HasForeignKey("PatternId");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.LinkSpyer", b =>
+                {
+                    b.HasOne("BotAppData.Models.Lesson", "Lesson")
+                        .WithMany()
+                        .HasForeignKey("LessonId");
+
+                    b.HasOne("BotAppData.Models.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.PatternMessage", b =>
+                {
+                    b.HasOne("BotAppData.Models.Pattern", "Pattern")
+                        .WithMany()
+                        .HasForeignKey("PatternId");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.Payments", b =>
+                {
+                    b.HasOne("BotAppData.Models.Subscription", "Subscription")
+                        .WithMany()
+                        .HasForeignKey("SubscriptionId");
+
+                    b.HasOne("BotAppData.Models.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.Subscription", b =>
+                {
+                    b.HasOne("BotAppData.Models.Users", "Users")
+                        .WithMany()
+                        .HasForeignKey("UsersId");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.Users", b =>
                 {
                     b.HasOne("BotAppData.Models.Group", "Group")
                         .WithMany()

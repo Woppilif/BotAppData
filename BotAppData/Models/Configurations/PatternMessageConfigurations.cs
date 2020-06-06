@@ -8,8 +8,8 @@ namespace BotAppData.Models.Configurations
         public void Configure(EntityTypeBuilder<PatternMessage> builder)
         {
             builder.HasKey(prop => prop.Id);
-            builder.Property(prop => prop.PatternId).IsRequired();
-            builder.Property(prop => prop.Order).IsRequired();
+            builder.Property(prop => prop.Pattern).IsRequired();
+            builder.Property(prop => prop.IsFirst).IsRequired();
             builder.Property(prop => prop.Message).IsRequired();
             builder.Property(prop => prop.Status).IsRequired();
         }

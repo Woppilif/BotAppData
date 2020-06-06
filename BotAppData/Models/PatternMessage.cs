@@ -5,8 +5,8 @@ namespace BotAppData.Models
     public class PatternMessage
     {
         public Guid Id { get; set; }
-        public Guid PatternId { get; set; }
-        public int Order { get; set; }
+        public Pattern Pattern { get; set; }
+        public bool IsFirst { get; set; }
         public string Message { get; set; }
         public DateTime AtTime { get; set; }
         public bool Status { get; set; }
@@ -15,7 +15,7 @@ namespace BotAppData.Models
         {
             Id = new Guid();
             AtTime = DateTime.Now;
-            Order = 1;
+            IsFirst = false;
         }
 
         public string MakeMessage(string url,DateTime dateTime)
