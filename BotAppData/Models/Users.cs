@@ -22,6 +22,7 @@ namespace BotAppData.Models
         {
             Id = new Guid();
             CreatedAt = DateTime.Now;
+            Group = Guid.Empty;
         }
 
     }

@@ -10,38 +10,17 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BotAppData.Migrations
 {
     [DbContext(typeof(BotAppContext))]
-    [Migration("20200602185439_paymentstr")]
-    partial class paymentstr
+    [Migration("20200606215827_initmain")]
+    partial class initmain
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("bots")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
-
-            modelBuilder.Entity("BotAppData.Models.Broadcast", b =>
-                {
-                    b.Property<Guid>("Id")
-                        .ValueGeneratedOnAdd()
-                        .HasColumnType("uuid");
-
-                    b.Property<Guid?>("GroupId")
-                        .HasColumnType("uuid");
-
-                    b.Property<string>("Message")
-                        .HasColumnType("text");
-
-                    b.Property<DateTime>("MessageAt")
-                        .HasColumnType("timestamp without time zone");
-
-                    b.HasKey("Id");
-
-                    b.HasIndex("GroupId");
-
-                    b.ToTable("Broadcast");
-                });
 
             modelBuilder.Entity("BotAppData.Models.Group", b =>
                 {
@@ -176,6 +155,9 @@ namespace BotAppData.Migrations
                     b.Property<DateTime>("CreatedAt")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<bool>("IsExtends")
+                        .HasColumnType("boolean");
+
                     b.Property<bool>("IsPayed")
                         .HasColumnType("boolean");
 
@@ -188,6 +170,26 @@ namespace BotAppData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Payment");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.ProductItems", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<int[]>("Ages")
+                        .HasColumnType("integer[]");
+
+                    b.Property<string>("Name")
+                        .HasColumnType("text");
+
+                    b.Property<decimal>("Price")
+                        .HasColumnType("numeric");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("ProductItem");
                 });
 
             modelBuilder.Entity("BotAppData.Models.Subscription", b =>
@@ -258,13 +260,6 @@ namespace BotAppData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Users");
-                });
-
-            modelBuilder.Entity("BotAppData.Models.Broadcast", b =>
-                {
-                    b.HasOne("BotAppData.Models.Group", "Group")
-                        .WithMany()
-                        .HasForeignKey("GroupId");
                 });
 #pragma warning restore 612, 618
         }
