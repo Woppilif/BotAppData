@@ -3,12 +3,16 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BotAppData.Migrations
 {
-    public partial class initmains : Migration
+    public partial class initmain : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
+            migrationBuilder.EnsureSchema(
+                name: "bots2");
+
             migrationBuilder.CreateTable(
                 name: "BroadcastGroup",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -25,6 +29,7 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Patterns",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -37,6 +42,7 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ProductItem",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -51,6 +57,7 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Users",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -72,6 +79,7 @@ namespace BotAppData.Migrations
                     table.ForeignKey(
                         name: "FK_Users_BroadcastGroup_GroupId",
                         column: x => x.GroupId,
+                        principalSchema: "bots2",
                         principalTable: "BroadcastGroup",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -79,6 +87,7 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Lessons",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -95,12 +104,14 @@ namespace BotAppData.Migrations
                     table.ForeignKey(
                         name: "FK_Lessons_BroadcastGroup_GroupId",
                         column: x => x.GroupId,
+                        principalSchema: "bots2",
                         principalTable: "BroadcastGroup",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Lessons_Patterns_PatternId",
                         column: x => x.PatternId,
+                        principalSchema: "bots2",
                         principalTable: "Patterns",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -108,11 +119,12 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "PatternMessages",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
                     PatternId = table.Column<Guid>(nullable: true),
-                    Order = table.Column<int>(nullable: false),
+                    IsFirst = table.Column<bool>(nullable: false),
                     Message = table.Column<string>(nullable: true),
                     AtTime = table.Column<DateTime>(nullable: false),
                     Status = table.Column<bool>(nullable: false)
@@ -123,6 +135,7 @@ namespace BotAppData.Migrations
                     table.ForeignKey(
                         name: "FK_PatternMessages_Patterns_PatternId",
                         column: x => x.PatternId,
+                        principalSchema: "bots2",
                         principalTable: "Patterns",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -130,6 +143,7 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Subscriptions",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -145,6 +159,7 @@ namespace BotAppData.Migrations
                     table.ForeignKey(
                         name: "FK_Subscriptions_Users_UsersId",
                         column: x => x.UsersId,
+                        principalSchema: "bots2",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -152,6 +167,7 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "LinkSpyers",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -165,12 +181,14 @@ namespace BotAppData.Migrations
                     table.ForeignKey(
                         name: "FK_LinkSpyers_Lessons_LessonId",
                         column: x => x.LessonId,
+                        principalSchema: "bots2",
                         principalTable: "Lessons",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_LinkSpyers_Users_UsersId",
                         column: x => x.UsersId,
+                        principalSchema: "bots2",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -178,6 +196,7 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Payment",
+                schema: "bots2",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -196,12 +215,14 @@ namespace BotAppData.Migrations
                     table.ForeignKey(
                         name: "FK_Payment_Subscriptions_SubscriptionId",
                         column: x => x.SubscriptionId,
+                        principalSchema: "bots2",
                         principalTable: "Subscriptions",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
                     table.ForeignKey(
                         name: "FK_Payment_Users_UsersId",
                         column: x => x.UsersId,
+                        principalSchema: "bots2",
                         principalTable: "Users",
                         principalColumn: "Id",
                         onDelete: ReferentialAction.Restrict);
@@ -209,46 +230,55 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lessons_GroupId",
+                schema: "bots2",
                 table: "Lessons",
                 column: "GroupId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Lessons_PatternId",
+                schema: "bots2",
                 table: "Lessons",
                 column: "PatternId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LinkSpyers_LessonId",
+                schema: "bots2",
                 table: "LinkSpyers",
                 column: "LessonId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_LinkSpyers_UsersId",
+                schema: "bots2",
                 table: "LinkSpyers",
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_PatternMessages_PatternId",
+                schema: "bots2",
                 table: "PatternMessages",
                 column: "PatternId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_SubscriptionId",
+                schema: "bots2",
                 table: "Payment",
                 column: "SubscriptionId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Payment_UsersId",
+                schema: "bots2",
                 table: "Payment",
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Subscriptions_UsersId",
+                schema: "bots2",
                 table: "Subscriptions",
                 column: "UsersId");
 
             migrationBuilder.CreateIndex(
                 name: "IX_Users_GroupId",
+                schema: "bots2",
                 table: "Users",
                 column: "GroupId");
         }
@@ -256,31 +286,40 @@ namespace BotAppData.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "LinkSpyers");
+                name: "LinkSpyers",
+                schema: "bots2");
 
             migrationBuilder.DropTable(
-                name: "PatternMessages");
+                name: "PatternMessages",
+                schema: "bots2");
 
             migrationBuilder.DropTable(
-                name: "Payment");
+                name: "Payment",
+                schema: "bots2");
 
             migrationBuilder.DropTable(
-                name: "ProductItem");
+                name: "ProductItem",
+                schema: "bots2");
 
             migrationBuilder.DropTable(
-                name: "Lessons");
+                name: "Lessons",
+                schema: "bots2");
 
             migrationBuilder.DropTable(
-                name: "Subscriptions");
+                name: "Subscriptions",
+                schema: "bots2");
 
             migrationBuilder.DropTable(
-                name: "Patterns");
+                name: "Patterns",
+                schema: "bots2");
 
             migrationBuilder.DropTable(
-                name: "Users");
+                name: "Users",
+                schema: "bots2");
 
             migrationBuilder.DropTable(
-                name: "BroadcastGroup");
+                name: "BroadcastGroup",
+                schema: "bots2");
         }
     }
 }

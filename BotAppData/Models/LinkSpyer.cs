@@ -8,9 +8,9 @@ namespace BotAppData.Models
     public class LinkSpyer
     {
         public Guid Id { get; set; }
-        public Lesson Lesson { get; set; }
+        public virtual Lesson Lesson { get; set; }
         public DateTime CreatedAt { get; set; }
-        public Users Users { get; set; }
+        public virtual Users Users { get; set; }
         public LinkSpyer()
         {
             Id = new Guid();

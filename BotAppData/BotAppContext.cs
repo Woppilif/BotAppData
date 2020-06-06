@@ -25,7 +25,13 @@ namespace BotAppData
             //modelBuilder.ApplyConfiguration(new BroadcastGroupConfigurations());
 
             //modelBuilder.ApplyConfiguration(new UsersConfigurations());
-            base.OnModelCreating(modelBuilder);
+            //base.OnModelCreating(modelBuilder);
+            modelBuilder.HasDefaultSchema("bots2");
+        }
+
+        protected override void OnConfiguring(DbContextOptionsBuilder optionsBuilder)
+        {
+            optionsBuilder.UseLazyLoadingProxies();
         }
     }
 }

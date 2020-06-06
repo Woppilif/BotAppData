@@ -14,7 +14,10 @@ namespace BotAppData.Models
         public int StudentsCount { get; set; }
         public Group()
         {
-            Id = new Guid();
+            //Id = new Guid();
+            //Age = 1;
+            //Type = 1;
+            //StudentsCount = 0;
         }
     }
 }

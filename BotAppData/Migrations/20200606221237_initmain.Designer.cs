@@ -10,15 +10,16 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BotAppData.Migrations
 {
     [DbContext(typeof(BotAppContext))]
-    [Migration("20200606200736_initmains")]
-    partial class initmains
+    [Migration("20200606221237_initmain")]
+    partial class initmain
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
+                .HasDefaultSchema("bots2")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
-                .HasAnnotation("ProductVersion", "3.1.3")
+                .HasAnnotation("ProductVersion", "3.1.4")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
 
             modelBuilder.Entity("BotAppData.Models.Group", b =>
@@ -127,11 +128,11 @@ namespace BotAppData.Migrations
                     b.Property<DateTime>("AtTime")
                         .HasColumnType("timestamp without time zone");
 
+                    b.Property<bool>("IsFirst")
+                        .HasColumnType("boolean");
+
                     b.Property<string>("Message")
                         .HasColumnType("text");
-
-                    b.Property<int>("Order")
-                        .HasColumnType("integer");
 
                     b.Property<Guid?>("PatternId")
                         .HasColumnType("uuid");

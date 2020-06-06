@@ -5,7 +5,7 @@ namespace BotAppData.Models
     public class PatternMessage
     {
         public Guid Id { get; set; }
-        public Pattern Pattern { get; set; }
+        public virtual Pattern Pattern { get; set; }
         public bool IsFirst { get; set; }
         public string Message { get; set; }
         public DateTime AtTime { get; set; }

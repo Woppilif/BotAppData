@@ -5,11 +5,11 @@ namespace BotAppData.Models
     public class Lesson
     {
         public Guid Id { get; set; }
-        public Group Group { get; set; }
+        public virtual Group Group { get; set; }
         public DateTime LessonAt { get; set; }
         public bool Status { get; set; }
         public string Url { get; set; }
-        public Pattern Pattern { get; set; }
+        public virtual Pattern Pattern { get; set; }
         public bool IsRepeats { get; set; }
         public Lesson()
         {
