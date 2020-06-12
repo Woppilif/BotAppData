@@ -3,16 +3,12 @@ using Microsoft.EntityFrameworkCore.Migrations;
 
 namespace BotAppData.Migrations
 {
-    public partial class initmain : Migration
+    public partial class initmains : Migration
     {
         protected override void Up(MigrationBuilder migrationBuilder)
         {
-            migrationBuilder.EnsureSchema(
-                name: "bots");
-
             migrationBuilder.CreateTable(
                 name: "BroadcastGroup",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -29,7 +25,6 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Lessons",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -47,7 +42,6 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "LinkSpyers",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -62,7 +56,6 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "PatternMessages",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -79,7 +72,6 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Patterns",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -92,7 +84,6 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Payment",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -112,7 +103,6 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "ProductItem",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -127,7 +117,6 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Subscriptions",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -144,7 +133,6 @@ namespace BotAppData.Migrations
 
             migrationBuilder.CreateTable(
                 name: "Users",
-                schema: "bots",
                 columns: table => new
                 {
                     Id = table.Column<Guid>(nullable: false),
@@ -169,40 +157,31 @@ namespace BotAppData.Migrations
         protected override void Down(MigrationBuilder migrationBuilder)
         {
             migrationBuilder.DropTable(
-                name: "BroadcastGroup",
-                schema: "bots");
+                name: "BroadcastGroup");
 
             migrationBuilder.DropTable(
-                name: "Lessons",
-                schema: "bots");
+                name: "Lessons");
 
             migrationBuilder.DropTable(
-                name: "LinkSpyers",
-                schema: "bots");
+                name: "LinkSpyers");
 
             migrationBuilder.DropTable(
-                name: "PatternMessages",
-                schema: "bots");
+                name: "PatternMessages");
 
             migrationBuilder.DropTable(
-                name: "Patterns",
-                schema: "bots");
+                name: "Patterns");
 
             migrationBuilder.DropTable(
-                name: "Payment",
-                schema: "bots");
+                name: "Payment");
 
             migrationBuilder.DropTable(
-                name: "ProductItem",
-                schema: "bots");
+                name: "ProductItem");
 
             migrationBuilder.DropTable(
-                name: "Subscriptions",
-                schema: "bots");
+                name: "Subscriptions");
 
             migrationBuilder.DropTable(
-                name: "Users",
-                schema: "bots");
+                name: "Users");
         }
     }
 }

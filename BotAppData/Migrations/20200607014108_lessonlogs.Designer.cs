@@ -10,14 +10,13 @@ using Npgsql.EntityFrameworkCore.PostgreSQL.Metadata;
 namespace BotAppData.Migrations
 {
     [DbContext(typeof(BotAppContext))]
-    [Migration("20200606215827_initmain")]
-    partial class initmain
+    [Migration("20200607014108_lessonlogs")]
+    partial class lessonlogs
     {
         protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
-                .HasDefaultSchema("bots")
                 .HasAnnotation("Npgsql:ValueGenerationStrategy", NpgsqlValueGenerationStrategy.SerialColumn)
                 .HasAnnotation("ProductVersion", "3.1.3")
                 .HasAnnotation("Relational:MaxIdentifierLength", 63);
@@ -75,6 +74,26 @@ namespace BotAppData.Migrations
                     b.HasKey("Id");
 
                     b.ToTable("Lessons");
+                });
+
+            modelBuilder.Entity("BotAppData.Models.LessonLog", b =>
+                {
+                    b.Property<Guid>("Id")
+                        .ValueGeneratedOnAdd()
+                        .HasColumnType("uuid");
+
+                    b.Property<long>("ChatId")
+                        .HasColumnType("bigint");
+
+                    b.Property<DateTime>("CreatedAt")
+                        .HasColumnType("timestamp without time zone");
+
+                    b.Property<Guid>("LessonId")
+                        .HasColumnType("uuid");
+
+                    b.HasKey("Id");
+
+                    b.ToTable("LessonLogs");
                 });
 
             modelBuilder.Entity("BotAppData.Models.LinkSpyer", b =>
@@ -186,6 +205,9 @@ namespace BotAppData.Migrations
 
                     b.Property<decimal>("Price")
                         .HasColumnType("numeric");
+
+                    b.Property<int>("Product")
+                        .HasColumnType("integer");
 
                     b.HasKey("Id");
 

@@ -9,6 +9,7 @@ namespace BotAppData.Models
         public string Name { get; set; }
         public decimal Price { get; set; }
         public Ages[] Ages { get; set; }
+        public Products Product { get; set; }
 
         public ProductItems()
         {

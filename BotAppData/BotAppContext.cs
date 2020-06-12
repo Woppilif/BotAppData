@@ -15,6 +15,7 @@ namespace BotAppData
         public DbSet<Subscription> Subscriptions { get; set; }
         public DbSet<Payments> Payment { get; set; }
         public DbSet<ProductItems> ProductItem { get; set; }
+        public DbSet<LessonLog> LessonLogs { get; set; }
         public BotAppContext(DbContextOptions<BotAppContext> options) : base(options)
         {
         }
@@ -25,8 +26,8 @@ namespace BotAppData
             //modelBuilder.ApplyConfiguration(new BroadcastGroupConfigurations());
 
             //modelBuilder.ApplyConfiguration(new UsersConfigurations());
-            modelBuilder.HasDefaultSchema("bots");
-            //base.OnModelCreating(modelBuilder);
+            //modelBuilder.HasDefaultSchema("bots");
+            base.OnModelCreating(modelBuilder);
         }
     }
 }

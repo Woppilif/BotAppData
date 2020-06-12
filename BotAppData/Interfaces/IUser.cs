@@ -9,7 +9,8 @@ namespace BotAppData.Interfaces
         Children = 1,
         Teens = 2,
         Students = 3,
-        Adults = 4
+        Adults = 4,
+        Any = 5
     }
     public interface IUser
     {
